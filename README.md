@@ -58,7 +58,7 @@ threading macro for transducers / transducers reimagined as streams
 ;; this code
 (=> (range 5)
     (map inc)
-    (reduce! *))
+    (transduce! *))
 
 ;; is the same as
 (->> (range 5)
@@ -90,7 +90,7 @@ threading macro for transducers / transducers reimagined as streams
         (=> (range 10)
             (filter even?)
             (map #(Math/sqrt %))
-            (reduce! *))))
+            (transduce! *))))
 "Elapsed time: 550.802941 msecs"
 ```
 

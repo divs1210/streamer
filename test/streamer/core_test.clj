@@ -28,8 +28,8 @@
          (=> (range 10)
              (filter even?)
              (map #(Math/sqrt %))
-             (reduce! +)))
-      "`reduce!` translates to `transduce`")
+             (transduce! +)))
+      "`transduce!` translates to `transduce`")
 
   (is (= (->> (range 10)
               (partition 2)

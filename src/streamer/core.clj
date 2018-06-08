@@ -27,7 +27,7 @@
   [to]
   `(into ~to ~'%xform ~'%coll))
 
-(defmacro reduce!
+(defmacro transduce!
   "Dispatches to transduce."
   ([f]
    `(transduce ~'%xform ~f ~'%coll))
