@@ -18,44 +18,6 @@ threading macro for transducers / transducers reimagined as streams
 ;; Ex. 1
 ;; =====
 ;; this code
-(=> (range 10)
-    (filter odd?)
-    (map inc)
-    (seq!))
-
-;; is the same as
-(->> (range 10)
-     (filter odd?)
-     (map inc))
-
-;; and compiles to
-((fn [%xform %coll]
-   (sequence %xform %coll)) (comp (filter odd?) (map inc))
-                            (range 10))
-
-;; Ex. 2
-;; =====
-;; this code
-(require '[net.cgrand.xforms :as x])
-(=> (range 8)
-    (x/partition 2)
-    (map vec)
-    (into! {}))
-
-;; is the same as
-(->> (range 8)
-     (partition 2)
-     (map vec)
-     (into {}))
-
-;; and compiles to
-((fn [%xform %coll]
-   (into {} %xform %coll)) (comp (x/partition 2) (map vec))
-                           (range 8))
-
-;; Ex. 3
-;; =====
-;; this code
 (=> (range 5)
     (map inc)
     (transduce! *))
@@ -74,6 +36,46 @@ threading macro for transducers / transducers reimagined as streams
 (=> (range 5)
     (map inc)
     (transduce %xform * %coll))
+
+
+;; Ex. 2
+;; =====
+;; this code
+(=> (range 10)
+    (filter odd?)
+    (map inc)
+    (seq!))
+
+;; is the same as
+(->> (range 10)
+     (filter odd?)
+     (map inc))
+
+;; and compiles to
+((fn [%xform %coll]
+   (sequence %xform %coll)) (comp (filter odd?) (map inc))
+                            (range 10))
+
+
+;; Ex. 3
+;; =====
+;; this code
+(require '[net.cgrand.xforms :as x])
+(=> (range 8)
+    (x/partition 2)
+    (map vec)
+    (into! {}))
+
+;; is the same as
+(->> (range 8)
+     (partition 2)
+     (map vec)
+     (into {}))
+
+;; and compiles to
+((fn [%xform %coll]
+   (into {} %xform %coll)) (comp (x/partition 2) (map vec))
+                           (range 8))
 ```
 
 ## Perf
