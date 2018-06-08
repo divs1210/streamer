@@ -8,7 +8,7 @@ Study hard what interests you the most in the most undisciplined, irreverent and
 
 ## What
 
-threading macro for transducers / transducers reimagined as streams
+threading macro(s) for transducers / transducers reimagined as streams
 
 ## Usage
 
@@ -18,21 +18,23 @@ threading macro for transducers / transducers reimagined as streams
 ;; Ex. 1
 ;; =====
 ;; this code
-(=> (range 5)
+(=> (range 10)
+    (take 5)
     (map inc)
     (transduce! *))
 
 ;; is the same as
-(->> (range 5)
+(->> (range 10)
+     (take 5)
      (map inc)
      (reduce *))
 
 ;; and compiles to
 ((fn [%xform %coll]
-   (transduce %xform * %coll)) (comp (map inc))
-                               (range 5))
+   (transduce %xform * %coll)) (comp (take 5) (map inc))
+                               (range 10))
 
-;; and could be also written as
+;; and could also be written as
 (=> (range 5)
     (map inc)
     (transduce %xform * %coll))
@@ -56,6 +58,12 @@ threading macro for transducers / transducers reimagined as streams
    (sequence %xform %coll)) (comp (filter odd?) (map inc))
                             (range 10))
 
+;; and could also be written as
+(=> (range 10)
+    (filter odd?)
+    (map inc)
+    (sequence %xform %coll))
+
 
 ;; Ex. 3
 ;; =====
@@ -76,6 +84,12 @@ threading macro for transducers / transducers reimagined as streams
 ((fn [%xform %coll]
    (into {} %xform %coll)) (comp (x/partition 2) (map vec))
                            (range 8))
+
+;; and could also be written as
+(=> (range 8)
+    (x/partition 2)
+    (map vec)
+    (into {} %xform %coll))
 ```
 
 ## Perf
@@ -100,5 +114,4 @@ threading macro for transducers / transducers reimagined as streams
 
 Copyright © 2018 Divyansh Prakash
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0.
