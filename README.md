@@ -34,8 +34,9 @@ threading macro(s) for transducers / transducers reimagined as streams
    (transduce %xform * %coll)) (comp (take 5) (map inc))
                                (range 10))
 
-;; and could also be written as
-(=> (range 5)
+;; and can also be written as
+(=> (range 10)
+    (take 5)
     (map inc)
     (transduce %xform * %coll))
 
@@ -58,7 +59,7 @@ threading macro(s) for transducers / transducers reimagined as streams
    (sequence %xform %coll)) (comp (filter odd?) (map inc))
                             (range 10))
 
-;; and could also be written as
+;; and can also be written as
 (=> (range 10)
     (filter odd?)
     (map inc)
@@ -85,7 +86,7 @@ threading macro(s) for transducers / transducers reimagined as streams
    (into {} %xform %coll)) (comp (x/partition 2) (map vec))
                            (range 8))
 
-;; and could also be written as
+;; and can also be written as
 (=> (range 8)
     (x/partition 2)
     (map vec)
