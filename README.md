@@ -13,7 +13,7 @@ threading macro(s) for transducers / transducers reimagined as streams
 ## Usage
 
 ```clojure
-(require '[streamer.core :refer :all])
+(require '[streamer.core :refer [=> transduce! seq! into!]])
 
 ;; Ex. 1
 ;; =====
@@ -92,22 +92,22 @@ threading macro(s) for transducers / transducers reimagined as streams
     (into {} %xform %coll))
 ```
 
-## Perf
+## Profit?
 
 ```clojure
-(time (dotimes [_ 1000000]
-        (->> (range 10)
-             (filter even?)
-             (map #(Math/sqrt %))
-             (reduce *))))
-"Elapsed time: 1157.937817 msecs"
-
 (time (dotimes [_ 1000000]
         (=> (range 10)
             (filter even?)
             (map #(Math/sqrt %))
             (transduce! *))))
 "Elapsed time: 550.802941 msecs"
+
+(time (dotimes [_ 1000000]
+        (->> (range 10)
+             (filter even?)
+             (map #(Math/sqrt %))
+             (reduce *))))
+"Elapsed time: 1157.937817 msecs"
 ```
 
 ## License
