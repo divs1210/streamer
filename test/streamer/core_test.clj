@@ -17,8 +17,8 @@
          (=> (range 10)
              (filter odd?)
              (map inc)
-             (seq!)))
-      "`seq!` translates to `sequence`")
+             (sequence!)))
+      "`sequence!` translates to `sequence`")
 
   (is (= (->> (range 10)
               (filter even?)

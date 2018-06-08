@@ -13,7 +13,7 @@ threading macro(s) for transducers / transducers reimagined as streams
 ## Usage
 
 ```clojure
-(require '[streamer.core :refer [=> transduce! seq! into!]])
+(require '[streamer.core :refer [=> transduce! sequence! into!]])
 
 ;; Ex. 1
 ;; =====
@@ -47,7 +47,7 @@ threading macro(s) for transducers / transducers reimagined as streams
 (=> (range 10)
     (filter odd?)
     (map inc)
-    (seq!))
+    (sequence!))
 
 ;; is the same as
 (->> (range 10)

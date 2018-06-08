@@ -16,20 +16,18 @@
 ;; Terminal Forms
 ;; ==============
 (defmacro transduce!
-  "Dispatches to transduce."
+  "Dispatches to `transduce`."
   ([f]
    `(transduce ~'%xform ~f ~'%coll))
   ([f init]
    `(transduce ~'%xform ~f ~init ~'%coll)))
 
-(defmacro seq!
-  "Creates and returns a seq from the coll and preceding xforms."
+(defmacro sequence!
+  "Dispatches to `sequence`."
   []
   `(sequence ~'%xform ~'%coll))
 
 (defmacro into!
-  "Returns a new coll consisting of to-coll with all of the items of
-  from-coll conjoined. from-coll is created by applying the preceding
-  xforms to the given coll."
+  "Dispatches to `into`."
   [to]
   `(into ~to ~'%xform ~'%coll))
