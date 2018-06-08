@@ -1,31 +1,21 @@
-(ns streamer.core
-  (:require [clojure.test :as t]))
+(ns streamer.core)
 
-(defn- switch-marker? [x]
-  (or (= x :seq)
-      (= x :stream)))
+(defmacro seq!
+  []
+  `(sequence ~'%xform ~'%coll))
 
-(defn- tag-forms
-  [xforms]
-  (->> xforms
-       (partition-by switch-marker?)
-       (map vector (cycle [:stream :skip :seq :skip]))
-       (take-nth 2)))
+(defmacro into!
+  [to]
+  `(into ~to ~'%xform ~'%coll))
+
+(defmacro reduce!
+  ([f]
+   `(transduce ~'%xform ~f ~'%coll))
+  ([f init]
+   `(transduce ~'%xform ~f ~init ~'%coll)))
 
 (defmacro =>
-  "A threading macro for data processing"
-  [stream & forms]
-  (loop [remaining-forms (tag-forms forms)
-         out-form stream]
-    (if (seq remaining-forms)
-      (recur (rest remaining-forms)
-             (let [[tag form] (first remaining-forms)]
-               (case tag
-                 :stream
-                 (list sequence
-                       (cons comp form)
-                       out-form)
-                 :seq
-                 (list (cons comp (reverse form))
-                       out-form))))
-      out-form)))
+  [coll & xforms]
+  (let [[xforms transducer-fn] ((juxt butlast last) xforms)]
+    `((fn [~'%xform ~'%coll]
+        ~transducer-fn) ~(cons `comp xforms) ~coll)))
