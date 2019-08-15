@@ -6,7 +6,7 @@
   return transducers.
   `terminal` is the last form in the `=>` body. It takes %xform and %coll
   as implicit parameters and can be used to generate the final value
-  once computation is complete."
+  once computation is complete. See `transdcuce!`, `sequence!`, and `into!`."
   [coll & xforms-and-terminal]
   (let [[xforms terminal] ((juxt butlast last) xforms-and-terminal)]
     `((fn [~'%xform ~'%coll]

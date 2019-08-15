@@ -31,7 +31,8 @@ threading macro(s) for transducers / transducers reimagined as streams
 
 ;; and compiles to
 ((fn [%xform %coll]
-   (transduce %xform * %coll)) (comp (take 5) (map inc))
+   (transduce %xform * %coll)) (comp (take 5) 
+                                     (map inc))
                                (range 10))
 
 ;; and can also be written as
@@ -83,7 +84,8 @@ threading macro(s) for transducers / transducers reimagined as streams
 
 ;; and compiles to
 ((fn [%xform %coll]
-   (into {} %xform %coll)) (comp (x/partition 2) (map vec))
+   (into {} %xform %coll)) (comp (x/partition 2)
+                                 (map vec))
                            (range 8))
 
 ;; and can also be written as
