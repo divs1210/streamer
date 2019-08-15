@@ -2,6 +2,7 @@
 
 (defmacro =>
   "Thread coll through xforms, returning value from terminal.
+  `coll` is a collection.
   `xforms` are functions like (map first) and (filter even) that
   return transducers.
   `terminal` is the last form in the `=>` body. It takes %xform and %coll
