@@ -6,13 +6,13 @@ Study hard what interests you the most in the most undisciplined, irreverent and
 
 # streamer
 
+[![Clojars Project](https://img.shields.io/clojars/v/divs1210/streamer.svg)](https://clojars.org/divs1210/streamer)
+
 ## What
 
 threading macro(s) for transducers / transducers reimagined as streams
 
 ## Usage
-
-**Leiningen** `[divs1210/streamer "1.0.0"]`
 
 ```clojure
 (require '[streamer.core
