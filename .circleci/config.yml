@@ -5,7 +5,6 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.2
-
 jobs:
   build:
     docker:
@@ -45,5 +44,6 @@ jobs:
       - run: lein test
 
       # test coverage!
+      - run: lein cloverage
       - codecov/upload:
           file: ./target/coverage/index.html
