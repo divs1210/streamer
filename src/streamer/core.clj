@@ -16,18 +16,21 @@
 ;; Terminal Forms
 ;; ==============
 (defmacro transduce!
-  "Dispatches to `transduce`."
+  "Dispatches to `transduce`.
+  Use inside `=>` as a terminal."
   ([f]
    `(transduce ~'%xform ~f ~'%coll))
   ([f init]
    `(transduce ~'%xform ~f ~init ~'%coll)))
 
 (defmacro sequence!
-  "Dispatches to `sequence`."
+  "Dispatches to `sequence`.
+  Use inside `=>` as a terminal."
   []
   `(sequence ~'%xform ~'%coll))
 
 (defmacro into!
-  "Dispatches to `into`."
+  "Dispatches to `into`.
+  Use inside `=>` as a terminal."
   [to]
   `(into ~to ~'%xform ~'%coll))
