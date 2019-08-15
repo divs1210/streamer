@@ -12,8 +12,11 @@ threading macro(s) for transducers / transducers reimagined as streams
 
 ## Usage
 
+**Leiningen** `[divs1210/streamer "1.0.0"]`
+
 ```clojure
-(require '[streamer.core :refer [=> transduce! sequence! into!]])
+(require '[streamer.core
+           :refer [=> transduce! sequence! into!]])
 
 ;; Ex. 1
 ;; =====
