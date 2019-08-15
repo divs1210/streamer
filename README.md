@@ -8,6 +8,7 @@ Study hard what interests you the most in the most undisciplined, irreverent and
 
 [![Clojars Project](https://img.shields.io/clojars/v/divs1210/streamer.svg)](https://clojars.org/divs1210/streamer)
 [![CircleCI](https://circleci.com/gh/divs1210/streamer/tree/master.svg?style=svg)](https://circleci.com/gh/divs1210/streamer/tree/master)
+[![codecov](https://codecov.io/gh/divs1210/streamer/branch/master/graph/badge.svg)](https://codecov.io/gh/divs1210/streamer)
 
 ## What
 
