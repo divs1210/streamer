@@ -44,6 +44,6 @@ jobs:
       - run: lein test
 
       # test coverage!
-      - run: lein cloverage
+      - run: lein cloverage --codecov
       - codecov/upload:
-          file: ./target/coverage/index.html
+          file: ./target/coverage/codecov.json
