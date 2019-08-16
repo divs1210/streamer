@@ -62,7 +62,8 @@ threading macro(s) for transducers / transducers reimagined as streams
 
 ;; and compiles to
 ((fn [%xform %coll]
-   (sequence %xform %coll)) (comp (filter odd?) (map inc))
+   (sequence %xform %coll)) (comp (filter odd?) 
+                                  (map inc))
                             (range 10))
 
 ;; and can also be written as
