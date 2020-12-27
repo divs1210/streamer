@@ -38,3 +38,9 @@
   Use inside `=>` as a terminal."
   [to]
   `(into ~to ~'%xform ~'%coll))
+
+(defmacro eduction!
+  "Dispatches to `eduction`.
+  Use inside `=>` as a terminal."
+  []
+  `(eduction ~'%xform ~'%coll))
