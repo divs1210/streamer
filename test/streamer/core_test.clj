@@ -55,4 +55,21 @@
                (x/partition 2)
                (map vec)
                (into! {})))
-        "`into!` translates to `into`")))
+        "`into!` translates to `into`"))
+
+  (testing "eduction!"
+    (is (= (seq (eduction
+                 (map inc)
+                 (filter odd?)
+                 (range 10)))
+
+           (seq (eduction
+                 (comp
+                  (map inc)
+                  (filter odd?))
+                 (range 10)))
+
+           (seq (=> (range 10)
+                    (map inc)
+                    (filter odd?)
+                    (eduction!)))))))
